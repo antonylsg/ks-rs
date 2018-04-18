@@ -23,7 +23,7 @@ fn critical_value(alpha: f64, size: usize) -> f64 {
 }
 
 
-pub fn test<F>(sample: &[f64], alpha: f64, cdf: F) -> Output
+pub fn test<F>(sample: &[f64], alpha: f64, cdf: F) -> Option<Output>
 where
     F: Fn(f64) -> f64,
 {
@@ -32,18 +32,17 @@ where
     let score = sample.iter()
         .cloned()
         .enumerate()
-        .map(|(i, r2)| {
-            let cdf = cdf(r2);
-            let lower_ecdf = inv_len *  i      as f64;
-            let upper_ecdf = inv_len * (i + 1) as f64;
+        .map(|(idx, x)| {
+            let cdf = cdf(x);
+            let lower_ecdf = inv_len *  idx      as f64;
+            let upper_ecdf = inv_len * (idx + 1) as f64;
 
             (cdf - lower_ecdf).max(upper_ecdf - cdf)
         })
-        .max_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Equal))
-        .unwrap();
+        .max_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Equal))?;
 
-    Output {
+    Some(Output {
         critical_value: critical_value(alpha, sample.len()),
         score,
-    }
+    })
 }
