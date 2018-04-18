@@ -1,0 +1,7 @@
+[package]
+name = "ks"
+version = "0.1.0"
+authors = ["Antony Lesage <lesage.antony@gmail.com>"]
+description = "Kolmogorov-Smirnov Test"
+
+[dependencies]
