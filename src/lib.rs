@@ -1,4 +1,14 @@
+#[macro_use]
+extern crate lazy_static;
+
+mod table;
+
 use std::cmp::Ordering;
+
+
+lazy_static!{
+    static ref TABLE: table::Table = table::Table::new();
+}
 
 
 pub struct Output {
@@ -17,9 +27,10 @@ impl Output {
 fn critical_value(alpha: f64, size: usize) -> f64 {
     assert!(0.0 < alpha && alpha < 1.0);
 
-    let inv_size = (size as f64).recip();
+    let alpha = (100.0 * alpha) as u8;
 
-    (-inv_size * (0.5 * alpha).ln()).sqrt()
+    TABLE.get((size, alpha))
+        .unwrap()
 }
 
 
