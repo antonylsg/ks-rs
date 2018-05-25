@@ -226,6 +226,6 @@ impl Table {
 
         self.inner
             .get(&alpha)
-            .map(|p_values| p_values[size - 1])
+            .map(|thresholds| thresholds[size - 1])
     }
 }
