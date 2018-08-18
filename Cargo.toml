@@ -5,4 +5,4 @@ authors = ["Antony Lesage <lesage.antony@gmail.com>"]
 description = "Kolmogorov-Smirnov Test"
 
 [dependencies]
-lazy_static = "1.0"
+lazy_static = "1"
