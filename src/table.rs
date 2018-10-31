@@ -53,7 +53,7 @@ impl Table {
                 ],
             ),
         ].into_iter()
-            .collect();
+        .collect();
 
         Table { inner }
     }
