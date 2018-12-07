@@ -52,7 +52,8 @@ impl Table {
                     0.182, 0.18,
                 ],
             ),
-        ].into_iter()
+        ]
+        .into_iter()
         .collect();
 
         Table { inner }

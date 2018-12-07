@@ -44,7 +44,8 @@ where
             let upper_ecdf = inv_len * (idx + 1) as f64;
 
             (cdf - lower_ecdf).max(upper_ecdf - cdf)
-        }).max_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Equal))?;
+        })
+        .max_by(|a, b| a.partial_cmp(b).unwrap_or(Ordering::Equal))?;
 
     Some(Output {
         critical_value: critical_value(alpha, sample.len()),
