@@ -1,13 +1,10 @@
-#[macro_use]
-extern crate lazy_static;
+use once_cell::sync::Lazy;
 
 mod table;
 
 use std::cmp::Ordering;
 
-lazy_static! {
-    static ref TABLE: table::Table = table::Table::new();
-}
+const TABLE: Lazy<table::Table> = Lazy::new(table::Table::new);
 
 pub struct Output {
     pub critical_value: f64,
