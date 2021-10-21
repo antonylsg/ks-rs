@@ -6,7 +6,7 @@ pub struct Table {
 
 impl Table {
     pub fn new() -> Table {
-        let inner = vec![
+        let inner = [
             (
                 1,
                 vec![
@@ -53,8 +53,7 @@ impl Table {
                 ],
             ),
         ]
-        .into_iter()
-        .collect();
+        .into();
 
         Table { inner }
     }
